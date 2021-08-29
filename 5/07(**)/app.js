@@ -2,34 +2,30 @@ const fs = require('fs');
 const filePath = process.platform === 'linux' ? '/dev/stdin' : './input.txt';
 let input = fs.readFileSync(filePath).toString().split('\n');
 
-const arrLength = +input[0];
+const arrLenght = input[0];
 const inputArray = [];
-for (let i = 1; i <= arrLength; i++) {
-  const arr = input[i].split(' ').map((item) => +item);
+for (let i = 1; i <= arrLenght; i++) {
+  const newInput = input[i].split(' ').map((item) => +item);
   inputArray.push({
-    N: arr[0],
-    arr: arr.slice(1),
+    N: newInput[0],
+    arr: newInput.slice(1),
   });
 }
 
-soltuion(arrLength, inputArray);
+solution(arrLenght, inputArray);
 
-function soltuion(C, inputArray) {
+function solution(C, inputArray) {
   for (let i = 0; i < C; i++) {
-    const item = inputArray[i];
-    let average = 0;
-    for (let j = 0; j < item.N; j++) {
-      average += item.arr[j];
-    }
-    average /= item.N;
+    let item = inputArray[i];
+    const sum = item.arr.reduce((acc, cur) => acc + cur);
+    const avergae = sum / item.N;
 
     let cnt = 0;
-    for (let k = 0; k < item.N; k++) {
-      if (average < item.arr[k]) {
+    for (let j = 0; j < item.N; j++) {
+      if (avergae < item.arr[j]) {
         cnt++;
       }
     }
-
     const answer = ((cnt / item.N) * 100).toFixed(3);
     console.log(answer + '%');
   }

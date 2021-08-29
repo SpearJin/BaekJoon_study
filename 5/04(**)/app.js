@@ -6,13 +6,17 @@ input = input.map((item) => +item);
 
 solution(input);
 
-function solution(arr) {
-  const userNum = [];
-  arr.forEach((item) => {
-    const num = item % 42;
-    if (userNum.indexOf(num) === -1) {
-      userNum.push(num);
+function solution(num) {
+  const newArray = Array(42).fill(0);
+  let cnt = 0;
+  for (let i = 0; i < num.length; i++) {
+    const value = num[i] % 42;
+    newArray[value]++;
+  }
+  for (let i = 0; i < newArray.length; i++) {
+    if (newArray[i] !== 0) {
+      cnt++;
     }
-  });
-  console.log(userNum.length);
+  }
+  console.log(cnt);
 }

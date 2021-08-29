@@ -5,29 +5,31 @@ let input = fs.readFileSync(filePath).toString().split('\n');
 solution(+input[0]);
 
 function f(num) {
-  const strNum = String(num);
+  const numStr = String(num);
 
   if (num < 100) {
     return true;
   }
 
-  const diff = +strNum[1] - +strNum[0];
-  let beforeNum = strNum[1];
-  for (let i = 2; i < strNum.length; i++) {
-    if (strNum[i] - beforeNum !== diff) {
+  let beforNum = numStr[1];
+  const diff = numStr[1] - numStr[0];
+  for (let i = 2; i < numStr.length; i++) {
+    if (numStr[i] - beforNum !== diff) {
       return false;
+    } else {
+      beforNum = numStr[i];
     }
-    beforeNum = strNum[i];
   }
   return true;
 }
 
 function solution(N) {
-  let cnt = 0;
+  let answer = 0;
   for (let i = 1; i <= N; i++) {
-    if (f(i)) {
-      cnt++;
+    const num = f(i);
+    if (num) {
+      answer++;
     }
   }
-  console.log(cnt);
+  console.log(answer);
 }

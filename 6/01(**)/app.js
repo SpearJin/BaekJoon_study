@@ -1,13 +1,13 @@
-function d(num) {
-  let sum = 0;
-  newNum = String(num).split('');
-  for (let i = 0; i < newNum.length; i++) {
-    sum += +newNum[i];
-  }
-  return sum + num;
-}
-
 solution();
+
+function d(num) {
+  const strNum = String(num);
+  let sum = 0;
+  for (let i = 0; i < strNum.length; i++) {
+    sum += +strNum[i];
+  }
+  return num + sum;
+}
 
 function solution() {
   const newArray = Array(10000).fill(0);
@@ -17,7 +17,8 @@ function solution() {
       newArray[num]++;
     }
   }
-  for (let i = 1; i <= 10000; i++) {
+
+  for (let i = 1; i < 10000; i++) {
     if (newArray[i] === 0) {
       console.log(i);
     }

@@ -4,12 +4,11 @@ let input = fs.readFileSync(filePath).toString().split('\n');
 
 const scoreLength = +input[0];
 input = input.slice(1);
+solution(scoreLength, input);
 
-solution(input);
-
-function solution(arr) {
-  for (let i = 0; i < scoreLength; i++) {
-    let score = 0;
+function solution(N, arr) {
+  for (let i = 0; i < N; i++) {
+    let answer = 0;
     let cnt = 0;
 
     for (let j = 0; j < arr[i].length; j++) {
@@ -18,8 +17,8 @@ function solution(arr) {
       } else {
         cnt = 0;
       }
-      score += cnt;
+      answer += cnt;
     }
-    console.log(score);
+    console.log(answer);
   }
 }
